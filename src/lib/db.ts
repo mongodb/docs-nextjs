@@ -60,9 +60,14 @@ export const getPageAST = cache(
     if (prId) {
       query["pr_id"] = prId;
     }
-    log("check query " + JSON.stringify(query));
     const DEFAULT_SORT: FindOptions = { sort: { id: -1 } };
-    return collection.findOne(query, DEFAULT_SORT);
+    try {
+      const pageRes = collection.findOne(query, DEFAULT_SORT);
+      return pageRes;
+    } catch (e) {
+      log(String(e), 'error');
+      throw e;
+    }
   }
 );
 

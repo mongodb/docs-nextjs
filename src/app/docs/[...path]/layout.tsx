@@ -15,10 +15,6 @@ export default async function Layout({
   const { path } = await params;
   const fullPagePath = [PATH_PREFIX, path?.join("/") ?? ""].join("/");
   const pageDoc = await getPageAST(fullPagePath);
-
-  if (!pageDoc) {
-    // TODO: create a default 404 page
-    return <div>404</div>;
-  }
+  //  TODO: DOP-5909 get template and return layout
   return <>{children}</>;
 }
