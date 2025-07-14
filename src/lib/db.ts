@@ -86,5 +86,5 @@ async function clearClient(signal?: string) {
 }
 
 process.on("SIGINT", async () => clearClient("SIGINT"));
-
 process.on("SIGTERM", async () => clearClient("SIGTERM"));
+process.on("SIGKILL", async () => clearClient("SIGKILL"));
