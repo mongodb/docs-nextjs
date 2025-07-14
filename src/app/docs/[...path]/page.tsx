@@ -1,7 +1,4 @@
-// import Image from "next/image";
-// import styles from "@/page.module.css";
-
-import { getPageAST } from "lib/db";
+import { getPageAST } from "@/lib/db";
 
 const PATH_PREFIX = "docs";
 

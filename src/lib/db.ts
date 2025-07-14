@@ -1,19 +1,20 @@
 /**
  * Module to secure MDB connections
  * DB connections credentials should be sourced from env file
- * Intended be calld from Server Components, or Route Handlers
+ * Intended be called from Server Components, or Route Handlers
  */
 
 import { cache } from "react";
 import { Filter, FindOptions, MongoClient } from "mongodb";
-import { ASTDocument } from "./types";
-import { assertTrailingSlash } from "utils/assertTrailingSlash";
-import { log } from "utils/logger";
+import { ASTDocument } from "@/lib/types";
+import { assertTrailingSlash } from "@/utils/assertTrailingSlash";
+import envConfig, { type Environments } from "@/utils/envConfig";
+import { log } from "@/utils/logger";
 
-const uri = process.env.MONGODB_URI as string;
-const collectionName = "documents";
+const URI = envConfig.MONGODB_URI as string;
+const COLLECTION_NAME = "documents";
 
-if (!uri) {
+if (!URI) {
   throw new Error("MONGODB_URI is missing as an env variable");
 }
 
@@ -21,14 +22,14 @@ let client: MongoClient | null;
 
 function getClient() {
   if (!client) {
-    client = new MongoClient(uri, {
-      appName: "docs-nextjs-" + (process.env.ENV ?? "dev"),
+    client = new MongoClient(URI, {
+      appName: "docs-nextjs-" + envConfig.ENV,
     });
   }
   return client;
 }
 
-function getDbName(env: string) {
+function getDbName(env: Environments) {
   switch (env) {
     case "production":
       return "snooty_prod";
@@ -43,12 +44,12 @@ function getDbName(env: string) {
 
 async function getPagesDocumentCollection() {
   const client = getClient();
-  const dbName = getDbName(process.env.ENV || "");
-  return client.db(dbName).collection<ASTDocument>(collectionName);
+  const dbName = getDbName(envConfig.ENV);
+  return client.db(dbName).collection<ASTDocument>(COLLECTION_NAME);
 }
 
 /**
- * Using react cache here to prevent double querying 
+ * Using react cache here to prevent double querying
  */
 export const getPageAST = cache(
   async (path: string | string[], prId?: number) => {
@@ -62,18 +63,21 @@ export const getPageAST = cache(
     }
     const DEFAULT_SORT: FindOptions = { sort: { id: -1 } };
     try {
+      log({ message: `Querying db for query ${JSON.stringify(query)}` });
       const pageRes = collection.findOne(query, DEFAULT_SORT);
       return pageRes;
     } catch (e) {
-      log(String(e), 'error');
+      log({ message: String(e), level: "error" });
       throw e;
     }
   }
 );
 
-export async function clearClient(signal?: string) {
+// TODO: revisit this logic when deploying Next on Netlify.
+// see if we have to clear sockets to MDB connections, or if Netlify handles these
+async function clearClient(signal?: string) {
   if (signal) {
-    log(`${signal} received. Closing MongoDB connection...`);
+    log({ message: `${signal} received. Closing MongoDB connection...` });
   }
   if (client) {
     await client.close();

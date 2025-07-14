@@ -10,7 +10,7 @@ This project uses node as specified in the `.nvmrc` file.
 
 ### NPM
 
-Use `npm ci` to install dependencies
+Use `npm install` to install dependencies
 
 
 ### Env files

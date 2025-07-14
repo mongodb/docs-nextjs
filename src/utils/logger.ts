@@ -1,9 +1,10 @@
 import { createLogger, Logger, transports, format, LogEntry } from "winston";
+import envConfig, { type Environments } from "./envConfig";
 
 // Acts as global logger object as long as it's created by `initiaLogger` funciton
 let logger: Logger | null = null;
 
-const getEnvLevel = (env: string) => {
+const getEnvLevel = (env: Environments) => {
   switch (env) {
     case "production":
       return "warn";
@@ -34,7 +35,7 @@ const initiateLogger = () => {
         format: format.json(),
       }),
     ],
-    level: getEnvLevel(process.env.ENV ?? "dev"),
+    level: getEnvLevel(envConfig.ENV),
   });
 
   logger.info("Logger created");
@@ -44,14 +45,18 @@ const initiateLogger = () => {
 
 const getLevel = (level?: string) => level || "info";
 
-export const log = (message: string, level?: string) => {
+type logParams = {
+  message: string;
+  level?: string;
+  [key: string]: string | undefined;
+};
+
+export const log = ({ message, level, ...rest }: logParams) => {
   const _logger = initiateLogger();
   const log: LogEntry = {
     level: getLevel(level),
     message: message,
+    ...rest
   };
-  if (level) {
-    log["level"] = level;
-  }
   _logger.log(log);
 };
