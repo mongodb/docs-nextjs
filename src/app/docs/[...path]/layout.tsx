@@ -1,6 +1,4 @@
-import { getPageAST } from "@/lib/db";
-
-const PATH_PREFIX = "docs";
+import { getPageDocFromParams } from "@/lib/db";
 
 export default async function Layout({
   children,
@@ -9,9 +7,7 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ path?: string[] }>;
 }) {
-  const { path } = await params;
-  const fullPagePath = [PATH_PREFIX, path?.join("/") ?? ""].join("/");
-  const pageDoc = await getPageAST(fullPagePath);
+  const pageDoc = await getPageDocFromParams(params);
   //  TODO: DOP-5909 get template and return layout
   return <>{children}</>;
 }

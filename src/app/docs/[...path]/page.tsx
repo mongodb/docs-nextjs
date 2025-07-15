@@ -1,15 +1,11 @@
-import { getPageAST } from "@/lib/db";
-
-const PATH_PREFIX = "docs";
+import { getPageDocFromParams } from "@/lib/db";
 
 export default async function Page({
   params,
 }: {
   params: Promise<{ path?: string[] }>;
 }) {
-  const { path } = await params;
-  const fullPagePath = [PATH_PREFIX, path?.join("/") ?? ""].join("/");
-  const pageDoc = await getPageAST(fullPagePath);
+  const pageDoc = await getPageDocFromParams(params);
   if (!pageDoc) {
     // TODO: create a default 404 page
     return <div>404</div>;

@@ -35,7 +35,7 @@ const initiateLogger = () => {
         format: format.json(),
       }),
     ],
-    level: getEnvLevel(envConfig.ENV),
+    level: getEnvLevel(envConfig.DB_ENV),
   });
 
   logger.info("Logger created");

@@ -14,7 +14,7 @@ Use `npm install` to install dependencies
 
 
 ### Env files
-Create a `.env` file using the sample.env file provided
+Create a `.env` file using the .env.sample file provided
 
 ## Getting Started
 

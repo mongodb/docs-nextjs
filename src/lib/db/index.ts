@@ -6,7 +6,7 @@
 
 import { cache } from "react";
 import { Filter, FindOptions, MongoClient } from "mongodb";
-import { ASTDocument } from "@/lib/types";
+import { ASTDocument } from "@/lib/db/types";
 import { assertTrailingSlash } from "@/utils/assertTrailingSlash";
 import envConfig, { type Environments } from "@/utils/envConfig";
 import { log } from "@/utils/logger";
@@ -23,7 +23,7 @@ let client: MongoClient | null;
 function getClient() {
   if (!client) {
     client = new MongoClient(URI, {
-      appName: "docs-nextjs-" + envConfig.ENV,
+      appName: "docs-nextjs-" + envConfig.DB_ENV,
     });
   }
   return client;
@@ -44,14 +44,15 @@ function getDbName(env: Environments) {
 
 async function getPagesDocumentCollection() {
   const client = getClient();
-  const dbName = getDbName(envConfig.ENV);
+  const dbName = getDbName(envConfig.DB_ENV);
   return client.db(dbName).collection<ASTDocument>(COLLECTION_NAME);
 }
 
 /**
- * Using react cache here to prevent double querying
+ * This function retrieves the AST document for a given page path.
+ * It uses caching to optimize performance.
  */
-export const getPageAST = cache(
+const getPageAST = cache(
   async (path: string | string[], prId?: number) => {
     const collection = await getPagesDocumentCollection();
     const pathString = typeof path === "string" ? path : path.join("/");
@@ -73,6 +74,12 @@ export const getPageAST = cache(
   }
 );
 
+export async function getPageDocFromParams(params: Promise<{ path?: string[] }>, prefix = "docs") {
+  const { path } = await params;
+  const fullPagePath = [prefix, path?.join("/") ?? ""].join("/");
+  return getPageAST(fullPagePath);
+}
+
 // TODO: revisit this logic when deploying Next on Netlify.
 // see if we have to clear sockets to MDB connections, or if Netlify handles these
 async function clearClient(signal?: string) {
@@ -83,8 +90,8 @@ async function clearClient(signal?: string) {
     await client.close();
     client = null;
   }
+  process.exit(0);
 }
 
 process.on("SIGINT", async () => clearClient("SIGINT"));
 process.on("SIGTERM", async () => clearClient("SIGTERM"));
-process.on("SIGKILL", async () => clearClient("SIGKILL"));
