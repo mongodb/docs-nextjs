@@ -48,15 +48,15 @@ const getLevel = (level?: string) => level || "info";
 type logParams = {
   message: string;
   level?: string;
-  [key: string]: string | undefined;
+  [key: string]: unknown;
 };
 
 export const log = ({ message, level, ...rest }: logParams) => {
   const _logger = initiateLogger();
-  const log: LogEntry = {
+  const logEntry: LogEntry = {
     level: getLevel(level),
     message: message,
     ...rest
   };
-  _logger.log(log);
+  _logger.log(logEntry);
 };
