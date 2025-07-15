@@ -1,4 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MongoDB Docs on Next.js
+
+Docs-Nextjs is a [Next.js](https://nextjs.org) application using app router features. It is the designated site to serve all MDB Documentation through an SSR pipeline.
+
+## Installation
+
+### Prereq - Node
+
+This project uses node as specified in the `.nvmrc` file.
+
+### NPM
+
+Use `npm install` to install dependencies
+
+
+### Env files
+Create a `.env` file using the .env.sample file provided
 
 ## Getting Started
 
