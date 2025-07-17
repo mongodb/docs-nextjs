@@ -10,6 +10,9 @@ interface UpdatedAsset extends StaticAsset {
 }
 
 interface PageAst {
+  options?: {
+    template?: string;
+  }
   [key: string]: unknown;
 }
 

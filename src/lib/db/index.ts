@@ -7,8 +7,8 @@
 import { cache } from "react";
 import { Filter, FindOptions, MongoClient } from "mongodb";
 import { ASTDocument } from "@/lib/db/types";
-import { assertTrailingSlash } from "@/utils/assertTrailingSlash";
-import envConfig, { type Environments } from "@/utils/envConfig";
+import { assertTrailingSlash } from "@/utils/assert-trailing-slash";
+import envConfig, { type Environments } from "@/utils/env-config";
 import { log } from "@/utils/logger";
 
 const URI = envConfig.MONGODB_URI as string;
@@ -65,7 +65,7 @@ const getPageAST = cache(
     const DEFAULT_SORT: FindOptions = { sort: { id: -1 } };
     try {
       log({ message: `Querying db for query ${JSON.stringify(query)}` });
-      const pageRes = collection.findOne(query, DEFAULT_SORT);
+      const pageRes: ASTDocument | null = await collection.findOne(query, DEFAULT_SORT);
       return pageRes;
     } catch (e) {
       log({ message: String(e), level: "error" });
