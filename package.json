@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mdb/consistent-nav": "^2.4.2",
+    "@mdb/flora": "^1.20.2",
     "mongodb": "^6.17.0",
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "styled-components": "^6.1.19",
+    "theme-ui": "^0.17.2",
     "winston": "^3.17.0"
   },
   "devDependencies": {
