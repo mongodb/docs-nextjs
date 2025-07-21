@@ -1,8 +1,8 @@
 "use client";
+
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import LGProvider, {
-    LeafyGreenProviderProps,
 } from '@leafygreen-ui/leafygreen-provider';
 import { useServerInsertedHTML } from "next/navigation";
 import { useState } from "react";
@@ -13,7 +13,7 @@ export default function RootStyleRegistry({
   children: React.ReactNode;
 }) {
   const [cache] = useState(() => {
-    const cache = createCache({ key: "css" });
+    const cache = createCache({ key: "leafygreen-ui" });
     cache.compat = true;
     return cache;
   });
@@ -33,11 +33,9 @@ export default function RootStyleRegistry({
     <CacheProvider value={cache}>
       <LGProvider
         darkMode={false}
-        // baseFontSize={baseFontSize ?? BaseFontSize.Body2}
+      // baseFontSize={baseFontSize ?? BaseFontSize.Body2}
       >
-        {/* <ToastProvider portalClassName={toastStyles}> */}
-          {children}
-        {/* </ToastProvider> */}
+        {children}
       </LGProvider>
     </CacheProvider>
   );

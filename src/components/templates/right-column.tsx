@@ -1,5 +1,6 @@
 "use client";
-// TODO: can make this a server side component using page data
+// TODO: make this a server side component using data as a prop
+// NOTE: notice hydration happening in the browser when using "use client"
 
 import React, { ReactNode } from 'react';
 import { cx, css } from '@leafygreen-ui/emotion';
@@ -23,23 +24,20 @@ const RightColumn = ({
         z-index: ${theme.zIndexes.content + 2};
 
         `)}
-        // TODO: for right column component
-        // ${displayNone.onMobileAndTablet};
+    // TODO: for right column component
+    // ${displayNone.onMobileAndTablet};
     >
-      <div
-        // @ts-ignore
-        className={cx(css`
-          height: calc(100vh - 120px);
-          position: sticky;
-        `)}
-        // top: calc(${topLarge} + ${theme.size.medium});
+      <div className={cx(css``)}
+      // height: calc(100vh - 120px);
+      // position: sticky;
+      // top: calc(${topLarge} + ${theme.size.medium});
 
-        //   & > *:not(.${DISMISSIBLE_SKILLS_CARD_CLASSNAME}) {
-        //     margin-bottom: 30px;
-        //     margin-right: 24px;
-        //   }
+      //   & > *:not(.${DISMISSIBLE_SKILLS_CARD_CLASSNAME}) {
+      //     margin-bottom: 30px;
+      //     margin-right: 24px;
+      //   }
       >
-        
+
         {children}
       </div>
     </div>

@@ -4,7 +4,6 @@ import React from "react";
 import { UnifiedNav } from "@mdb/consistent-nav";
 import headingStyles from "@/styles/components/header.module.css";
 
-
 const Header = () => {
   const unifiedNavProperty = 'DOCS';
   // TODO: language selection
