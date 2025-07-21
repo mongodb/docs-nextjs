@@ -45,6 +45,7 @@ function getDbName(env: Environments) {
 async function getPagesDocumentCollection() {
   const client = getClient();
   const dbName = getDbName(envConfig.DB_ENV);
+  log({ message: `Connecting to MongoDB database: ${dbName}` });
   return client.db(dbName).collection<ASTDocument>(COLLECTION_NAME);
 }
 
@@ -64,8 +65,9 @@ const getPageAST = cache(
     }
     const DEFAULT_SORT: FindOptions = { sort: { id: -1 } };
     try {
-      log({ message: `Querying db for query ${JSON.stringify(query)}` });
+      log({ message: `Querying db ${collection.namespace} for query ${JSON.stringify(query)}` });
       const pageRes: ASTDocument | null = await collection.findOne(query, DEFAULT_SORT);
+      log({ message: `Query result: ${JSON.stringify(pageRes)}` });
       return pageRes;
     } catch (e) {
       log({ message: String(e), level: "error" });

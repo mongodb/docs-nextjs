@@ -17,10 +17,10 @@ export default async function Template({ children, pageDoc }: {
   pageDoc: ASTDocument;
   children?: React.ReactNode;
 }) {
-  const TemplateComponent = getTemplate(pageDoc.ast.options?.template || "document");
+  const TemplateComponent = getTemplate(pageDoc?.ast?.options?.template || "document");
   return (
     <TemplateComponent>
-      <div style={{ background: "yellow" }}>
+      <div>
         {children}
       </div>
 

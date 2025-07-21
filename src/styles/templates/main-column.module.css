@@ -1,0 +1,14 @@
+.main-column {
+  --main-column-horizontal-margin: var(--size-xlarge);
+  margin: var(--size-default) var(--main-column-horizontal-margin) var(--size-xlarge);
+  max-width: 800px;
+  min-height: 600px;
+
+  @media only screen and (max-width: 1024px) {
+    margin: var(--size-default) 48px var(--size-xlarge);
+  }
+
+  @media only screen and (max-width: 480px) {
+    margin: var(--size-default) var(--size-medium) var(--size-xlarge);
+  }
+}

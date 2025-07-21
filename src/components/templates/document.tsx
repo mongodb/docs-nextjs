@@ -1,13 +1,29 @@
+import React from "react";
+import MainColumn from "./main-column";
+import RightColumn from "./right-column";
+import documentStyling from "@/styles/templates/document.module.css";
 
 export default function DocumentTemplate({ children }: {
-  // pageDoc: ASTDocument;
   children?: React.ReactNode;
 }) {
 
   return (
-    <div style={{ background: "lightblue" }}>
-      <h1>Document Template Component</h1>
-      {children}
+    <div className={(documentStyling.document)}>
+      <MainColumn className={(documentStyling['main-column'])}>
+        <div className="body">
+          {/* TODO: breadcrumbs components */}
+          {/* <Breadcrumbs siteTitle={title} slug={slug} /> */}
+          {children}
+          {/* TODO: prev next components */}
+          {/* {showPrevNext && (
+            <InternalPageNav slug={slug} slugTitleMapping={slugToBreadcrumbLabel ?? {}} toctreeOrder={toctreeOrder} />
+          )} */}
+        </div>
+      </MainColumn>
+      <RightColumn hasDismissibleSkillsCard={false}>
+        <div>CONTENTS HERE</div>
+
+      </RightColumn>
     </div>
   );
 }

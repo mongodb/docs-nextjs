@@ -5,7 +5,6 @@
 
 import { getPageDocFromParams } from "@/lib/db";
 import Template from "./custom-template";
-import { cookies } from "next/headers";
 
 export default async function Layout({
   children,
@@ -14,21 +13,12 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ path?: string[] }>;
 }) {
-  const cookiesObj = await cookies();
   const pageDoc = await getPageDocFromParams(params);
 
-  //  TODO: DOP-5909 get template and return layout
   return (
-    <>
-      {/* <Header /> */}
-      {/* insert nav bar here */}
-      {/* insert side nav here */}
+    <div className="docs-layout" style={{ gridArea: 'contents' }}>
       <Template pageDoc={pageDoc!}>
         {children}
       </Template>
-      {/* insert footer here */}
-    </>)
-
-  //   </body>
-  // </html>);
+    </div>)
 }
