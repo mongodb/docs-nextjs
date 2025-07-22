@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 // import { cookies } from "next/headers";
-import "./globals.css";
+import "./globals.css"; // TODO: 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { LeafyGreenProvider } from "./emotion";
-import layoutStyles from "@/styles/layout.module.css";
-import '@/styles/global-theme.css';
+import layoutStyles from "@/styles/layout.module.scss";
 
 export const metadata: Metadata = {
   title: "Create Next App",

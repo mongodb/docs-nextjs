@@ -1,7 +1,7 @@
 import React from "react";
 import MainColumn from "./main-column";
 import RightColumn from "./right-column";
-import documentStyling from "@/styles/templates/document.module.css";
+import documentStyling from "@/styles/templates/document.module.scss";
 
 export default function DocumentTemplate({ children }: {
   children?: React.ReactNode;
