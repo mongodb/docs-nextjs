@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import RootStyleRegistry from "./emotion";
+import { LeafyGreenProvider } from "./emotion";
 import layoutStyles from "@/styles/layout.module.css";
 import '@/styles/global-theme.css';
 
@@ -22,7 +22,7 @@ export default function RootLayout({
   // const cookiesObj = await cookies();
   return (
     <html lang="en">
-      <RootStyleRegistry>
+      <LeafyGreenProvider>
         <body>
           <div className={layoutStyles.layout}>
             <Header />
@@ -35,7 +35,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </body>
-      </RootStyleRegistry>
+      </LeafyGreenProvider>
     </html >
   );
 }

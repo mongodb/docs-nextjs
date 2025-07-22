@@ -1,11 +1,12 @@
 "use client";
-// TODO: make this a server side component using data as a prop
-// NOTE: notice hydration happening in the browser when using "use client"
 
-import React, { ReactNode } from 'react';
+// TODO: This file is a placeholder for the right column component.
+// It should be replaced with the actual implementation when available.
+import { ReactNode } from 'react';
 import { cx, css } from '@leafygreen-ui/emotion';
 import { theme } from '@/styles/theme';
-// import { DISMISSIBLE_SKILLS_CARD_CLASSNAME } from './DismissibleSkillsCard';
+import { H1 } from '@leafygreen-ui/typography';
+
 
 const RightColumn = ({
   hasDismissibleSkillsCard,
@@ -13,7 +14,7 @@ const RightColumn = ({
 }: {
   hasDismissibleSkillsCard: boolean;
   children: ReactNode;
-}) => {
+}): React.JSX.Element => {
 
   return (
     <div
@@ -28,6 +29,7 @@ const RightColumn = ({
     // ${displayNone.onMobileAndTablet};
     >
       <div className={cx(css``)}
+
       // height: calc(100vh - 120px);
       // position: sticky;
       // top: calc(${topLarge} + ${theme.size.medium});
@@ -36,12 +38,13 @@ const RightColumn = ({
       //     margin-bottom: 30px;
       //     margin-right: 24px;
       //   }
-      >
+      ><H1 className={'heading-class'}
+        as={'h1'} >This is a heading</H1>
 
         {children}
       </div>
     </div>
-  );
+  )
 };
 
 export default RightColumn;
