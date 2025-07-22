@@ -16,17 +16,16 @@
     "@mdb/flora": "^1.20.2",
     "mongodb": "^6.17.0",
     "next": "15.3.5",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "styled-components": "^6.1.19",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "theme-ui": "^0.17.2",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "typescript": "^5"
