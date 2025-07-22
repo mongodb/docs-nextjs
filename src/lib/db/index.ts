@@ -45,7 +45,6 @@ function getDbName(env: Environments) {
 async function getPagesDocumentCollection() {
   const client = getClient();
   const dbName = getDbName(envConfig.DB_ENV);
-  log({ message: `Connecting to MongoDB database: ${dbName}` });
   return client.db(dbName).collection<ASTDocument>(COLLECTION_NAME);
 }
 

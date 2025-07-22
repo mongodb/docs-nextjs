@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import RootStyleRegistry from "./emotion";
+import RootStyleRegistry from "../contexts/styled-components-registry";
 import layoutStyles from "@/styles/layout.module.css";
 import '@/styles/global-theme.css';
 
