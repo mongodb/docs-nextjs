@@ -26,19 +26,9 @@ const RightColumn = ({
 
         `)}
     // TODO: for right column component
-    // ${displayNone.onMobileAndTablet};
     >
       <div className={cx(css``)}
-
-      // height: calc(100vh - 120px);
-      // position: sticky;
-      // top: calc(${topLarge} + ${theme.size.medium});
-
-      //   & > *:not(.${DISMISSIBLE_SKILLS_CARD_CLASSNAME}) {
-      //     margin-bottom: 30px;
-      //     margin-right: 24px;
-      //   }
-      ><H1 className={'heading-class'}
+      ><H1 className={cx('heading-class', css`font-size: 60px;`)}
         as={'h1'} >This is a heading</H1>
 
         {children}

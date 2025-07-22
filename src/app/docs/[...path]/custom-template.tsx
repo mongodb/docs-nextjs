@@ -6,9 +6,8 @@ function getTemplate(templateOption: string): React.ComponentType<{ children?: R
   switch (templateOption) {
     case "document":
       return DocumentTemplate;
-    case "product-landing":
-      return DocumentTemplate; // Replace with actual ProductLandingTemplate when available
     default:
+      console.warn(`Unknown template option: ${templateOption}. Defaulting to DocumentTemplate.`);
       return DocumentTemplate;
   }
 }

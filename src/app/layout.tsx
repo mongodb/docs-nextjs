@@ -21,9 +21,9 @@ export default function RootLayout({
   // const cookiesObj = await cookies();
   return (
     <html lang="en">
-      <LeafyGreenProvider>
-        <body>
-          <div className={layoutStyles.layout}>
+      <body>
+        <div className={layoutStyles.layout}>
+          <LeafyGreenProvider>
             <Header />
             {/* TODO: return a sidenav here */}
             <div className={'sidenav-container'} style={{
@@ -32,9 +32,9 @@ export default function RootLayout({
             }}>REPLACE WITH SIDENAV</div>
             {children}
             <Footer />
-          </div>
-        </body>
-      </LeafyGreenProvider>
+          </LeafyGreenProvider>
+        </div>
+      </body>
     </html >
   );
 }
