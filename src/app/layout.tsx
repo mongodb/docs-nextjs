@@ -4,7 +4,7 @@ import "./globals.css"; // TODO:
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { LeafyGreenProvider } from "./emotion";
-import layoutStyles from "@/styles/layout.module.scss";
+import layoutStyles from "./layout.module.scss";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,6 +19,7 @@ export default function RootLayout({
 }>) {
   // TODO: handle dark mode here using cookies or local storage
   // const cookiesObj = await cookies();
+  console.log("RootLayout cookies", "TODO: handle dark mode here using cookies or local storage");
   return (
     <html lang="en">
       <body>

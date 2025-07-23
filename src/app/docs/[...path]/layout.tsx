@@ -13,6 +13,7 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ path?: string[] }>;
 }) {
+  console.log('docs layout');
   const pageDoc = await getPageDocFromParams(params);
 
   return (
