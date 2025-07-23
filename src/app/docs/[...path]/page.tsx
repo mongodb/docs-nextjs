@@ -1,4 +1,4 @@
-import { getPageDocFromParams } from "@/lib/db";
+import { getPageDocFromParams } from "@/services/db";
 import Link from "next/link";
 
 export default async function Page({

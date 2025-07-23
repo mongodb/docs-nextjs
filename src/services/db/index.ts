@@ -6,7 +6,7 @@
 
 import { cache } from "react";
 import { Filter, FindOptions, MongoClient } from "mongodb";
-import { ASTDocument } from "@/lib/db/types";
+import { ASTDocument } from "@/services/db/types";
 import { assertTrailingSlash } from "@/utils/assert-trailing-slash";
 import envConfig, { type Environments } from "@/utils/env-config";
 import { log } from "@/utils/logger";

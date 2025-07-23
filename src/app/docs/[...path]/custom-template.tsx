@@ -1,5 +1,5 @@
 import React from "react";
-import { ASTDocument } from "@/lib/db/types";
+import { ASTDocument } from "@/services/db/types";
 import DocumentTemplate from "@/components/templates/document";
 
 function getTemplate(templateOption: string): React.ComponentType<{ children?: React.ReactNode }> {

@@ -3,7 +3,7 @@
  * On navigation, layouts preserve state, remain interactive, and do not rerender.
  */
 
-import { getPageDocFromParams } from "@/lib/db";
+import { getPageDocFromParams } from "@/services/db";
 import Template from "./custom-template";
 
 export default async function Layout({
