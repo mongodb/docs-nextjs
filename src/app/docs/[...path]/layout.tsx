@@ -5,6 +5,7 @@
 
 import { getPageDocFromParams } from "@/services/db";
 import Template from "./custom-template";
+import ComponentFactory from "@/modules/component-factory";
 
 export default async function Layout({
   children,
