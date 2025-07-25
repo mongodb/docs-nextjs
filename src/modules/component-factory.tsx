@@ -1,5 +1,5 @@
 import { ASTNode, ComponentType, NodeName, NodeType, RoleName, Root as RootNode } from '@/types/ast';
-import { isRoleName } from '@/types/ast-utils';
+import { isParentNode, isRoleName } from '@/types/ast-utils';
 
 const IGNORED_NAMES = new Set([
   'contents',
@@ -191,7 +191,19 @@ const ComponentFactory = (props: ComponentFactoryProps) => {
     const ComponentType = getComponentType(type, name);
 
     if (!ComponentType) {
-      console.warn(`${type} ${name ? `"${name}" ` : ''}not yet implemented${slug ? ` on page ${slug}` : ''}`);
+      // console.warn(`${type} ${name ? `"${name}" ` : ''}not yet implemented${slug ? ` on page ${slug}` : ''}`);
+      return <div className={'component-container'} style={{ paddingTop: '3rem' }}>
+        Component for {type} {name ? `"${name}" ` : ''}not yet implemented
+        <br />
+        <div>
+          {isParentNode(nodeData) && nodeData.children.length > 0 && nodeData.children.map((child, index) => (
+            <>
+              Rendering children: {JSON.stringify(Object.entries(child).map(([key, value]) => key !== 'children' ? `${key}: ${value}` : undefined))}
+              <ComponentFactory nodeData={child} key={`${slug}-${index}`} />
+            </>
+          ))}
+        </div>
+      </div>
       return null;
     }
 
