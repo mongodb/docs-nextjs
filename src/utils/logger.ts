@@ -1,5 +1,5 @@
 import { createLogger, Logger, transports, format, LogEntry } from "winston";
-import envConfig, { type Environments } from "./envConfig";
+import envConfig, { type Environments } from "./env-config";
 
 // Acts as global logger object as long as it's created by `initiaLogger` funciton
 let logger: Logger | null = null;

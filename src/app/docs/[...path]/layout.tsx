@@ -1,4 +1,10 @@
-import { getPageDocFromParams } from "@/lib/db";
+/**
+ * A layout is UI that is shared all pages prepended by /docs/<path>. 
+ * On navigation, layouts preserve state, remain interactive, and do not rerender.
+ */
+
+import { getPageDocFromParams } from "@/services/db";
+import Template from "./custom-template";
 
 export default async function Layout({
   children,
@@ -7,7 +13,13 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ path?: string[] }>;
 }) {
+  console.log('docs layout');
   const pageDoc = await getPageDocFromParams(params);
-  //  TODO: DOP-5909 get template and return layout
-  return <>{children}</>;
+
+  return (
+    <div className="docs-layout" style={{ gridArea: 'contents' }}>
+      <Template pageDoc={pageDoc!}>
+        {children}
+      </Template>
+    </div>)
 }
