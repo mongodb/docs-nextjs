@@ -191,7 +191,6 @@ const ComponentFactory = (props: ComponentFactoryProps) => {
     const ComponentType = getComponentType(type, name);
 
     if (!ComponentType) {
-      // console.warn(`${type} ${name ? `"${name}" ` : ''}not yet implemented${slug ? ` on page ${slug}` : ''}`);
       return <div className={'component-container'} style={{ paddingTop: '3rem' }}>
         Component for {type} {name ? `"${name}" ` : ''}not yet implemented
         <br />
@@ -204,6 +203,7 @@ const ComponentFactory = (props: ComponentFactoryProps) => {
           ))}
         </div>
       </div>
+      // console.warn(`${type} ${name ? `"${name}" ` : ''}not yet implemented${slug ? ` on page ${slug}` : ''}`);
       return null;
     }
 
