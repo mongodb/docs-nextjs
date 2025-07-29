@@ -14,6 +14,7 @@
     "@leafygreen-ui/typography": "^22.0.1",
     "@mdb/consistent-nav": "^2.4.2",
     "@mdb/flora": "^1.20.2",
+    "lodash": "^4.17.21",
     "mongodb": "^6.17.0",
     "next": "15.3.5",
     "react": "^18.0.0",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/lodash": "^4.17.20",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
